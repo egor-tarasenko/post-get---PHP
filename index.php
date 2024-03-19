@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];
     $checkbox = isset($_POST['checkbox']) ? $_POST['checkbox'] : '';
     $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+    $selectedCountry = isset($_POST['country']) ? $_POST['country'] : '';
 
     if (empty($name)) {
         $errors['name'] = 'обов\'язкове поле';
@@ -39,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     
     if (empty(array_filter($errors))) {
-        $name = $email = $password = $checkbox = $gender = '';
+        $name = $email = $password = $checkbox = $gender = $selectedCountry = '';
     }
 }
 ?>
@@ -82,11 +83,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="form-group">
                     <label for="country">Країна</label>
                     <select class="form-control" id="country" name="country">
-                        <option <?php if(isset($_POST['country']) && $_POST['country'] == 'Україна') echo 'selected'; ?>>Україна</option>
-                        <option <?php if(isset($_POST['country']) && $_POST['country'] == 'США') echo 'selected'; ?>>США</option>
-                        <option <?php if(isset($_POST['country']) && $_POST['country'] == 'Канада') echo 'selected'; ?>>Канада</option>
-                        <option <?php if(isset($_POST['country']) && $_POST['country'] == 'Великобританія') echo 'selected'; ?>>Великобританія</option>
-                        <option <?php if(isset($_POST['country']) && $_POST['country'] == 'Інша') echo 'selected'; ?>>Інша</option>
+                        <option value="UA" <?php if($selectedCountry === 'UA') echo 'selected'; ?>>Україна</option>
+                        <option value="US" <?php if($selectedCountry === 'US') echo 'selected'; ?>>США</option>
+                        <option value="CA" <?php if($selectedCountry === 'CA') echo 'selected'; ?>>Канада</option>
+                        <option value="UK" <?php if($selectedCountry === 'UK') echo 'selected'; ?>>Великобританія</option>
+                        <option value="Other" <?php if($selectedCountry === 'Other') echo 'selected'; ?>>Інша</option>
                     </select>
                 </div>
                 <div class="form-group">
